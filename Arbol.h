@@ -49,7 +49,7 @@ public:
         return aux;
     }
 
-    Nodo* RL(Nodo* nodo) {
+    Nodo* LR(Nodo* nodo) {
         Nodo* aux;
 
         nodo->left = this->RR(nodo->left);
@@ -58,7 +58,7 @@ public:
         return aux;
     }
 
-    Nodo* LR(Nodo* nodo) {
+    Nodo* RL(Nodo* nodo) {
         Nodo* aux;
 
         nodo->right = this->LL(nodo->right);
@@ -84,7 +84,7 @@ public:
                         newR = this->LL(subArbol);
                     }
                     else {
-                        newR = this->RL(subArbol);
+                        newR = this->LR(subArbol);
                     }
                 }
 
@@ -104,7 +104,7 @@ public:
                         newR = this->RR(subArbol);
                     }
                     else {
-                        newR = this->LR(subArbol);
+                        newR = this->RL(subArbol);
                     }
                 }
             }
