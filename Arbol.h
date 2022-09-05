@@ -25,7 +25,7 @@ public:
         }
     }
 
-    Nodo* rotacionIzquierda(Nodo* nodo) {
+    Nodo* LL(Nodo* nodo) {
         Nodo* aux = nodo->left;
         nodo->left = aux->right;
 
@@ -37,7 +37,7 @@ public:
         return aux;
     }
 
-    Nodo* rotacionDerecha(Nodo* nodo) {
+    Nodo* RR(Nodo* nodo) {
         Nodo* aux = nodo->right;
         nodo->right = aux->left;
 
@@ -49,26 +49,26 @@ public:
         return aux;
     }
 
-    Nodo* rotacionDobleIzquierda(Nodo* nodo) {
+    Nodo* RL(Nodo* nodo) {
         Nodo* aux;
 
-        nodo->left = this->rotacionDerecha(nodo->left);
-        aux = this->rotacionIzquierda(nodo);
+        nodo->left = this->RR(nodo->left);
+        aux = this->LL(nodo);
 
         return aux;
     }
 
-    Nodo* rotacionDobleDerecha(Nodo* nodo) {
+    Nodo* LR(Nodo* nodo) {
         Nodo* aux;
 
-        nodo->right = this->rotacionIzquierda(nodo->right);
-        aux = this->rotacionDerecha(nodo);
+        nodo->right = this->LL(nodo->right);
+        aux = this->RR(nodo);
 
         return aux;
     }
 
     Nodo* pushNode(Nodo* nuevo, Nodo* subArbol) {
-        Nodo* nuevoPadre = subArbol;
+        Nodo* newR = subArbol;
 
         if (nuevo->value < subArbol->value) {
             if (subArbol->left == NULL) {
@@ -81,10 +81,10 @@ public:
 
                 if (balance == 2) {
                     if (nuevo->value < subArbol->left->value) {
-                        nuevoPadre = this->rotacionIzquierda(subArbol);
+                        newR = this->LL(subArbol);
                     }
                     else {
-                        nuevoPadre = this->rotacionDobleIzquierda(subArbol);
+                        newR = this->RL(subArbol);
                     }
                 }
 
@@ -101,10 +101,10 @@ public:
 
                 if (balance == 2) {
                     if (nuevo->value > subArbol->right->value) {
-                        nuevoPadre = this->rotacionDerecha(subArbol);
+                        newR = this->RR(subArbol);
                     }
                     else {
-                        nuevoPadre = this->rotacionDobleDerecha(subArbol);
+                        newR = this->LR(subArbol);
                     }
                 }
             }
@@ -124,7 +124,7 @@ public:
             subArbol->balanceFactor = max(this->getbalanceFactor(subArbol->left), this->getbalanceFactor(subArbol->right)) + 1;
         }
 
-        return nuevoPadre;
+        return newR;
     }
 
     void push(int value) {
