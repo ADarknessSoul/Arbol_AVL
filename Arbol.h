@@ -9,7 +9,7 @@ using namespace std;
 class Arbol {
 private:
 
-    Nodo* r; //raíz
+    Nodo* r; 
 
 public:
     Arbol() {
@@ -141,14 +141,14 @@ public:
     void inOrden(Nodo* nodo) {
         if (nodo != NULL) {
             this->inOrden(nodo->left);
-            cout << nodo->value << ", ";
+            cout << nodo->value << "\n";
             this->inOrden(nodo->right);
         }
     }
 
     void preOrden(Nodo* nodo) {
         if (nodo != NULL) {
-            cout << nodo->value << ", ";
+            cout << nodo->value << "\n";
             this->preOrden(nodo->left);
             this->preOrden(nodo->right);
         }
@@ -158,7 +158,7 @@ public:
         if (nodo != NULL) {
             this->postOrden(nodo->left);
             this->postOrden(nodo->right);
-            cout << nodo->value << ", ";
+            cout << nodo->value << "\n";
         }
     }
 

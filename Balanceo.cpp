@@ -33,7 +33,7 @@ int main() {
 
                 cin >> detener;
 
-                system("cls");
+               system("cls");
 
             } while (detener != 1);
 
